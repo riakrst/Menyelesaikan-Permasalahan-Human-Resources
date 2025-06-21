@@ -59,7 +59,14 @@ Setelah lingkungan siap, jalankan perintah berikut untuk memproses prediksi:
 ```
 python predict.py
 ```
-Hasil prediksi akan disimpan dalam file `sample_output.csv`.
+
+**Hasil prediksi** akan disimpan dalam file `sample_output.csv`.
+
+Setiap baris data akan memiliki kolom tambahan bernama Attrition_Prediction yang berisi hasil prediksi:
+- Resign: jika model memprediksi karyawan akan keluar
+- Bertahan: jika model memprediksi karyawan akan tetap bekerja
+
+File ini dapat ditemukan pada direktori utama proyek setelah menjalankan script predict.py.
 
 ---
 
