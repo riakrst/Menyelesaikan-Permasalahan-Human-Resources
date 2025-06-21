@@ -59,54 +59,87 @@ Setelah lingkungan siap, jalankan perintah berikut untuk memproses prediksi:
 ```
 python predict.py
 ```
-Hasil prediksi akan disimpan dalam file `sample_output.csv`.
+
+**Hasil prediksi** akan disimpan dalam file `sample_output.csv`.
+
+Setiap baris data akan memiliki kolom tambahan bernama Attrition_Prediction yang berisi hasil prediksi:
+- Resign: jika model memprediksi karyawan akan keluar
+- Bertahan: jika model memprediksi karyawan akan tetap bekerja
+
+File ini dapat ditemukan pada direktori utama proyek setelah menjalankan script predict.py.
 
 ---
 
-<!--
+## 📊 Business Dashboard
 
-## Business Dashboard
+Untuk menjawab tantangan tingginya *attrition rate* di perusahaan **Jaya Jaya Maju**, telah dibangun sebuah **business dashboard** menggunakan **Metabase**.
 
-Dashboard interaktif telah dibuat menggunakan **Metabase** yang menampilkan visualisasi terkait faktor-faktor yang paling berpengaruh terhadap attrition, seperti:
+### 🔐 Akses Dashboard
 
-- Rata-rata attrition berdasarkan usia, jenis kelamin, departemen, level pekerjaan, dan status lembur.
-- Korelasi antara work-life balance, job satisfaction, dan performance rating dengan attrition.
+- **Platform:** Metabase
+- **URL Lokal:** `http://localhost:3001`
+- **Email Login:** `root@mail.com`
+- **Password:** `root123`
+- **Screenshot:** folder `riakrst-dashboard` (terlampir)
+- **Dashboard File:** `metabase.db.mv.db` (disertakan)
 
-Dashboard ini dapat membantu tim HR untuk:
-- Mengidentifikasi kelompok karyawan dengan risiko tinggi attrition.
-- Mengambil tindakan lebih awal untuk meningkatkan retensi karyawan.
+---
 
-> **Username/Password Metabase**  
-> Email: root@mail.com  
-> Password: root123
+## Insight dari Visualisasi Dashboard
 
-> Jika menggunakan Looker Studio atau Tableau Public, sertakan link dashboard berikut:  
-> [Link Dashboard](#)
+Dashboard dibangun berdasarkan fitur-fitur terpenting yang memengaruhi keputusan karyawan untuk mengundurkan diri. Berikut insight dari masing-masing visualisasi:
+- **Summary:**
+  ![image](https://github.com/user-attachments/assets/ff6d8127-e846-4445-8975-7cf1ff2402fa)
+
+- **OverTime:** Karyawan yang lembur lebih sering resign → lembur adalah faktor utama attrition.
+  ![image](https://github.com/user-attachments/assets/4396ade5-82a0-40e1-9555-4e925db1c696)
+
+- **Department:** R&D dan Sales menyumbang attrition tertinggi → perlu perhatian khusus.
+  ![image](https://github.com/user-attachments/assets/c616c413-aba7-4c1a-9589-01ef848bfb7c)
+
+- **Marital Status:** Karyawan single paling banyak resign → lebih mobile, kurang terikat.
+  ![image](https://github.com/user-attachments/assets/f2af2ae0-1172-4d93-be8b-94c3d6ebdb0f)
+
+- **Job Role:** Sales Executive, Lab Technician, dan Research Scientist paling rentan keluar.
+  ![image](https://github.com/user-attachments/assets/4aaf3495-dff1-4fb5-89fe-f844f117860f)
+
+- **Age Group:** Usia 25–34 paling banyak resign → targetkan program retensi usia muda.
+  ![image](https://github.com/user-attachments/assets/50606d79-7379-4ec3-987a-72cc720c1df6)
+
+- **Satisfaction & Engagement:** Nilai rendah = risiko resign tinggi → tingkatkan kepuasan kerja.
+  ![image](https://github.com/user-attachments/assets/714df23c-acdd-487d-817a-da16b1903375)
+ 
+- **Work-Life Balance:** Perlu validasi ulang, karena hasil tidak sesuai ekspektasi.
+  ![image](https://github.com/user-attachments/assets/4139d8ff-c337-44c0-9fdd-c12e8473df67)
+
+- **Working Years:** Resign paling tinggi pada 0–10 tahun kerja → butuh program onboarding & pengembangan awal karier.
+  ![image](https://github.com/user-attachments/assets/4c868909-59e6-4073-b0a3-3d89f02aa2bd)
+
 
 ---
 
 ## Conclusion
 
-Berdasarkan analisis data karyawan Jaya Jaya Maju, ditemukan beberapa faktor yang secara signifikan berkontribusi terhadap tingginya attrition rate, di antaranya adalah:
+Proyek ini berhasil mengidentifikasi dan memvisualisasikan faktor-faktor utama yang menyebabkan tingginya tingkat attrition di perusahaan **Jaya Jaya Maju**, yaitu:
 
-- Karyawan yang sering lembur (OverTime).
-- Kepuasan kerja yang rendah (JobSatisfaction).
-- Work-Life Balance yang buruk.
-- Pengalaman kerja yang masih sedikit (TotalWorkingYears).
+- Beban kerja berlebih (lembur)
+- Kepuasan dan keterlibatan kerja yang rendah
+- Jabatan dan departemen tertentu (Sales, R&D)
+- Kelompok usia muda (25–34 tahun)
+- Masa kerja awal (0–10 tahun)
 
-Dengan memahami faktor-faktor ini, tim HR dapat menyusun strategi yang lebih efektif untuk mengurangi tingkat attrition dan meningkatkan retensi karyawan.
+Dengan membangun dashboard, manajer HR kini dapat memantau kondisi karyawan secara real-time dan memahami pola resign berdasarkan data aktual. Ini menjawab kebutuhan utama perusahaan untuk **memahami akar masalah attrition** dan **menyusun strategi retensi yang lebih tepat**.
 
 ---
 
-## Rekomendasi Action Items (Optional)
+## Rekomendasi Action Items 
 
-- **Evaluasi kebijakan lembur**  
-  Karyawan dengan jam lembur tinggi menunjukkan kecenderungan untuk resign, perlu diatur ulang agar lebih seimbang.
+Berikut adalah dua rekomendasi tindakan yang dapat diambil perusahaan untuk mengurangi tingkat pengunduran diri:
 
-- **Tingkatkan kepuasan kerja dan pengembangan karier**  
-  Sediakan program pelatihan dan jalur promosi yang jelas untuk meningkatkan keterlibatan dan retensi.
+### Action Item 1: Evaluasi dan Batasi Jam Lembur
+Lakukan evaluasi terhadap kebijakan lembur dan pastikan lembur hanya dilakukan jika sangat dibutuhkan. Perkenalkan program kompensasi atau fleksibilitas sebagai pengganti lembur berlebih.
 
-- **Monitor karyawan baru secara berkala**  
-  Karyawan dengan pengalaman kerja sedikit perlu didampingi secara lebih intensif agar tidak cepat keluar.
+### Action Item 2: Program Retensi untuk Karyawan Baru & Jabatan Kritis
+Terapkan program onboarding yang kuat, mentorship, serta jalur karier yang jelas untuk karyawan baru dan mereka yang berada di posisi dengan tingkat resign tinggi seperti Sales Executive dan Research Scientist.
 
--->
+---
