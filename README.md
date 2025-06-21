@@ -29,18 +29,41 @@ Cakupan proyek ini mencakup:
 ---
 
 
-<!--
 ## Persiapan
 
-**Sumber data**: Dataset karyawan Jaya Jaya Maju yang mencakup informasi demografis, pekerjaan, dan status attrition.  
-**Link referensi**: [IBM HR Analytics Employee Attrition & Performance](https://www.ibm.com/communities/analytics/watson-analytics-blog/watson-analytics-use-case-for-hr-retaining-valuable-employees/)
+**Sumber data**: 
+- Input: `dataset/sample_input.csv`  
+  File CSV berisi data karyawan yang ingin diprediksi (contoh: 2 baris data).
+- Output: `sample_output.csv`  
+  File hasil prediksi yang akan dihasilkan setelah menjalankan skrip.
 
 **Setup environment**:
-- Python (Jupyter Notebook/Google Colab)
-- Pandas, Numpy, Matplotlib, Seaborn, Scikit-learn
-- Metabase (via Docker) / alternatif: Tableau Public atau Looker Studio
+```
+# 1. Buat virtual environment
+python -m venv venv
+
+# 2. Aktifkan environment
+# Windows:
+venv\Scripts\activate
+
+macOS/Linux:
+source venv/bin/activate
+
+# 3. Install dependensi
+pip install -r requirements.txt
+```
+
+**Menjalankan Prediksi**
+
+Setelah lingkungan siap, jalankan perintah berikut untuk memproses prediksi:
+```
+python predict.py
+```
+Hasil prediksi akan disimpan dalam file `sample_output.csv`.
 
 ---
+
+<!--
 
 ## Business Dashboard
 
