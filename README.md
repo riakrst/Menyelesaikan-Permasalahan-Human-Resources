@@ -6,39 +6,69 @@ Jaya Jaya Maju merupakan perusahaan multinasional yang telah beroperasi sejak ta
 
 Saat ini, attrition rate perusahaan berada di atas 10%, angka yang cukup tinggi dan berpotensi merugikan perusahaan dalam jangka panjang. Manajer HR ingin memahami lebih dalam faktor-faktor yang berkontribusi terhadap tingginya attrition ini agar dapat menyusun strategi yang lebih tepat untuk mempertahankan karyawan.
 
----
 
 ## Permasalahan Bisnis
 
-Permasalahan utama yang dihadapi perusahaan dan menjadi fokus proyek ini adalah:
+Perusahaan saat ini menghadapi permasalahan berikut:
 
-- **Mengidentifikasi faktor-faktor utama yang berkontribusi terhadap tingginya attrition rate.**
-- **Menyediakan insight visual melalui dashboard agar manajer HR dapat memonitor dan memahami kondisi karyawan dengan lebih baik.**
+- **Tingginya angka attrition (lebih dari 10%)** yang mengancam stabilitas dan efektivitas operasional perusahaan.
+- **Kurangnya pemahaman berbasis data** mengenai faktor-faktor yang menyebabkan karyawan mengundurkan diri.
+- **Belum adanya sistem dashboard** yang dapat membantu HR dalam memantau kondisi karyawan secara visual dan menyeluruh.
+- **Tidak tersedia strategi retensi yang terukur dan berbasis bukti** untuk mengurangi tingkat pengunduran diri.
 
----
+Jika permasalahan ini tidak segera diatasi, perusahaan berisiko:
+- Mengalami lonjakan biaya rekrutmen dan pelatihan.
+- Kehilangan karyawan potensial dan berpengalaman.
+- Menurunnya motivasi kerja serta meningkatnya beban kerja pada karyawan yang tersisa.
 
 ## Cakupan Proyek
 
-Cakupan proyek ini mencakup:
+Proyek ini mencakup serangkaian proses analisis data dan pengembangan solusi yang terdiri dari:
 
-1. Menjalankan seluruh proses data science dari tahap Business Understanding hingga Deployment secara lokal.
-2. Melakukan eksplorasi dan analisis data untuk menemukan pola dan hubungan antara berbagai variabel terhadap attrition.
-3. (Jika memungkinkan dan dibutuhkan) Membangun model machine learning untuk memprediksi kemungkinan seorang karyawan akan keluar dari perusahaan.
-4. Membangun minimal satu **business dashboard** yang menampilkan insight terkait faktor-faktor utama yang berkontribusi terhadap attrition.
+-  **Eksplorasi dan pembersihan data karyawan** untuk memastikan kualitas data yang digunakan.
+- **Analisis eksploratif (EDA)** untuk menemukan pola-pola penting yang memengaruhi attrition.
+- **Preprocessing data**, termasuk encoding, normalisasi, dan penyeimbangan data (SMOTE).
+- **Pembangunan model prediktif** membandingkan algoritma XGBoost dan Random Forest untuk memperkirakan kemungkinan karyawan resign.
+- **Pembuatan dashboard** menggunakan Metabase yang menampilkan insight utama dari data attrition.
+- **Simulasi prediksi** menggunakan sample data dalam format CSV atau input manual.
 
 ---
 
 
 ## Persiapan
 
-**Sumber data**: 
-- Input: `dataset/sample_input.csv`  
-  File CSV berisi data karyawan yang ingin diprediksi (contoh: 2 baris data).
-- Output: `sample_output.csv`  
-  File hasil prediksi yang akan dihasilkan setelah menjalankan skrip.
+## Sumber Data
 
-**Setup environment**:
-```
+- **Dataset utama** berasal dari repositori resmi Dicoding:  
+  [employee_data.csv (Dicoding GitHub)](https://github.com/dicodingacademy/dicoding_dataset/blob/main/employee/employee_data.csv)
+
+  > Pada tahap **preprocessing**, baris data dengan nilai `Attrition = null` telah dihapus dari data pelatihan karena tidak memiliki label dan tidak bisa digunakan dalam proses modelling.
+  > Namun, data tersebut **tidak dibuang**, melainkan dipindahkan ke file terpisah sebagai **data simulasi untuk prediksi**.
+
+- **Data input manual**:  
+  Proses prediksi juga mendukung input data karyawan satu per satu secara manual melalui terminal — cocok untuk memprediksi risiko resign dari karyawan tertentu.
+
+## Sample Input dan Output
+
+ **Input File**
+
+`dataset/sample_input.csv`  
+Berisi data karyawan **tanpa kolom `Attrition`** yang sebelumnya didrop dari dataset pelatihan.
+
+ **Output File**
+
+ `sample_output.csv`  
+Setelah script `predict.py` dijalankan, hasil prediksi akan disimpan ke file ini.  
+Setiap baris akan memiliki kolom tambahan `Attrition_Prediction` yang berisi hasil prediksi:
+
+- `Resign` → jika model memprediksi karyawan akan keluar
+- `Bertahan` → jika model memprediksi karyawan akan tetap bekerja
+
+### Setup Environment
+
+Lakukan langkah-langkah berikut untuk menyiapkan environment proyek:
+
+```bash
 # 1. Buat virtual environment
 python -m venv venv
 
@@ -46,27 +76,25 @@ python -m venv venv
 # Windows:
 venv\Scripts\activate
 
-macOS/Linux:
+# macOS/Linux:
 source venv/bin/activate
 
-# 3. Install dependensi
+# 3. Install semua dependensi
 pip install -r requirements.txt
 ```
-
-**Menjalankan Prediksi**
-
-Setelah lingkungan siap, jalankan perintah berikut untuk memproses prediksi:
+### Menjalankan Prediksi
+Setelah semua dependensi terinstal, jalankan script berikut:
 ```
 python predict.py
+
 ```
 
-**Hasil prediksi** akan disimpan dalam file `sample_output.csv`.
+Program akan menampilkan dua opsi:
+1. Menggunakan file dataset/sample_input.csv
+2. Input data karyawan secara manual melalui terminal
 
-Setiap baris data akan memiliki kolom tambahan bernama Attrition_Prediction yang berisi hasil prediksi:
-- Resign: jika model memprediksi karyawan akan keluar
-- Bertahan: jika model memprediksi karyawan akan tetap bekerja
+Setelah proses selesai, hasil prediksi akan otomatis disimpan di file sample_output.csv pada direktori utama proyek.
 
-File sample_output.csv dapat ditemukan pada direktori utama proyek setelah menjalankan script predict.py.
 
 ---
 
@@ -120,26 +148,50 @@ Dashboard dibangun berdasarkan fitur-fitur terpenting yang memengaruhi keputusan
 
 ## Conclusion
 
-Proyek ini berhasil mengidentifikasi dan memvisualisasikan faktor-faktor utama yang menyebabkan tingginya tingkat attrition di perusahaan **Jaya Jaya Maju**, yaitu:
+Berdasarkan hasil analisis data dan visualisasi yang telah dibuat, terdapat beberapa **faktor kunci yang memengaruhi attrition (pengunduran diri karyawan)** di perusahaan *Jaya Jaya Maju*, antara lain:
 
-- Beban kerja berlebih (lembur)
-- Kepuasan dan keterlibatan kerja yang rendah
-- Jabatan dan departemen tertentu (Sales, R&D)
-- Kelompok usia muda (25–34 tahun)
-- Masa kerja awal (0–10 tahun)
+- **Lembur (OverTime):** Karyawan yang sering lembur menunjukkan tingkat pengunduran diri yang signifikan lebih tinggi dibandingkan yang tidak lembur.
+- **Kepuasan dan keterlibatan kerja:** Attrition lebih banyak terjadi pada karyawan dengan skor rendah pada **Job Satisfaction**, **Environment Satisfaction**, dan **Job Involvement** (khususnya skor ≤ 2).
+- **Posisi pekerjaan dan departemen:** Posisi seperti **Sales Executive** dan **Research Scientist**, serta divisi seperti **Sales** dan **Research & Development**, menunjukkan angka resign yang lebih tinggi.
+- **Kelompok usia muda dan masa kerja singkat:** Karyawan berusia antara **25–34 tahun** dan dengan **Total Working Years < 10** menjadi kelompok yang paling rentan mengundurkan diri.
 
-Dengan membangun dashboard, manajer HR kini dapat memantau kondisi karyawan secara real-time dan memahami pola resign berdasarkan data aktual. Ini menjawab kebutuhan utama perusahaan untuk **memahami akar masalah attrition** dan **menyusun strategi retensi yang lebih tepat**.
+### Karakteristik Umum Karyawan yang Resign:
+- Usia 25–34 tahun  
+- Belum menikah  
+- Sering melakukan lembur  
+- Bekerja di divisi Sales atau R&D  
+- Memiliki skor kepuasan dan keterlibatan kerja rendah  
+- Masa kerja relatif singkat (di bawah 10 tahun)
+ 
+Dashboard yang dibangun menggunakan Metabase telah memberikan insight penting seperti:
+- **Pemetaan visual kelompok karyawan** dengan risiko resign tinggi.
+- **Pemantauan kondisi attrition berdasarkan berbagai dimensi**, seperti jam kerja, kepuasan, jabatan, usia, dan masa kerja.
+- **Dukungan pengambilan keputusan berbasis data** bagi manajer HR dalam merancang strategi retensi yang lebih akurat dan terukur.
+
+Temuan ini diharapkan dapat menjadi landasan awal bagi perusahaan untuk **menyusun kebijakan HR yang lebih proaktif** dan berfokus pada kelompok rentan agar dapat **mengurangi angka pengunduran diri di masa mendatang**.
 
 ---
 
-## Rekomendasi Action Items 
+## Rekomendasi Action Items
 
-Berikut adalah dua rekomendasi tindakan yang dapat diambil perusahaan untuk mengurangi tingkat pengunduran diri:
+Berdasarkan analisis data dan dashboard, berikut tindakan yang disarankan untuk mengurangi attrition di perusahaan:
 
-### Action Item 1: Evaluasi dan Batasi Jam Lembur
-Lakukan evaluasi terhadap kebijakan lembur dan pastikan lembur hanya dilakukan jika sangat dibutuhkan. Perkenalkan program kompensasi atau fleksibilitas sebagai pengganti lembur berlebih.
+### 1. Batasi Lembur
+- Maksimal lembur: **6 jam/minggu**.
+- Berikan kompensasi atau fleksibilitas waktu kerja.
+- Pantau lembur secara berkala melalui dashboard.
 
-### Action Item 2: Program Retensi untuk Karyawan Baru & Jabatan Kritis
-Terapkan program onboarding yang kuat, mentorship, serta jalur karier yang jelas untuk karyawan baru dan mereka yang berada di posisi dengan tingkat resign tinggi seperti Sales Executive dan Research Scientist.
+### 2. Retensi Karyawan Baru & Usia Muda
+- Onboarding intensif selama **3 bulan** pertama.
+- Coaching rutin untuk karyawan dengan masa kerja <2 tahun.
+- Program mentor bagi karyawan usia <35 tahun.
 
----
+### 3. Fokus pada Jabatan & Departemen Kritis
+- Tinjau beban kerja dan jalur karier di posisi **Sales Executive**, **Research Scientist**, **Sales**, dan **R&D**.
+- Tambahkan insentif atau pelatihan khusus untuk posisi tersebut.
+
+### 4. Tingkatkan Kepuasan & Keterlibatan
+- Lakukan survei rutin untuk mengukur kepuasan kerja.
+- Tindak lanjuti karyawan dengan skor keterlibatan ≤ 2.
+- Latih atasan agar lebih responsif terhadap kebutuhan tim.
+
