@@ -27,6 +27,8 @@ Cakupan proyek ini mencakup:
 4. Membangun minimal satu **business dashboard** yang menampilkan insight terkait faktor-faktor utama yang berkontribusi terhadap attrition.
 
 ---
+
+
 <!--
 ## Persiapan
 
