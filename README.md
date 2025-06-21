@@ -66,15 +66,15 @@ Setiap baris data akan memiliki kolom tambahan bernama Attrition_Prediction yang
 - Resign: jika model memprediksi karyawan akan keluar
 - Bertahan: jika model memprediksi karyawan akan tetap bekerja
 
-File ini dapat ditemukan pada direktori utama proyek setelah menjalankan script predict.py.
+File sample_output.csv dapat ditemukan pada direktori utama proyek setelah menjalankan script predict.py.
 
 ---
 
-## 📊 Business Dashboard
+## Business Dashboard
 
 Untuk menjawab tantangan tingginya *attrition rate* di perusahaan **Jaya Jaya Maju**, telah dibangun sebuah **business dashboard** menggunakan **Metabase**.
 
-### 🔐 Akses Dashboard
+### Akses Dashboard
 
 - **Platform:** Metabase
 - **URL Lokal:** `http://localhost:3001`
