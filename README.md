@@ -94,7 +94,7 @@ Program akan menampilkan dua opsi:
 2. Input data karyawan secara manual melalui terminal
 
 Setelah proses selesai, hasil prediksi akan otomatis disimpan di file sample_output.csv pada direktori utama proyek.
-
+Fitur prediksi pada proyek ini menggunakan model Random Forest yang telah dibandingkan dengan XGBoost, kemudian dibangun dan dievaluasi di file notebook.py sebelum diterapkan dalam script prediksi.
 
 ---
 
